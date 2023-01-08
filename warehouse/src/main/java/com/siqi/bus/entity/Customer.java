@@ -48,8 +48,6 @@ public class Customer implements Serializable {
 
     private String email;
 
-    private String fax;
-
     private Integer available;
 
 

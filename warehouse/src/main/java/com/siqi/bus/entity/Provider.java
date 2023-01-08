@@ -47,9 +47,7 @@ public class Provider implements Serializable {
     private String account;
 
     private String email;
-
-    private String fax;
-
+    
     private Integer available;
 
 
