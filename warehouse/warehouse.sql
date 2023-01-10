@@ -22,19 +22,19 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `bus_customer`;
 CREATE TABLE `bus_customer`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `customername` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `zip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `connectionpersion` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `bank` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `available` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '客户ID',
+  `customername` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户名称',
+  `zip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮编',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户地址',
+  `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户电话',
+  `connectionpersion` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系人',
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系人电话',
+  `bank` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '开户银行',
+  `account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '银行账号',
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `available` int(11) NULL DEFAULT NULL COMMENT '状态【0不可用1可用】',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '客户表' ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bus_customer
@@ -51,24 +51,24 @@ INSERT INTO `bus_customer` VALUES (11, 'asdf', 'afs', 'afsd', '123', 'dfs', '123
 -- ----------------------------
 DROP TABLE IF EXISTS `bus_goods`;
 CREATE TABLE `bus_goods`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `goodsname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `providerid` int(11) NULL DEFAULT NULL,
-  `produceplace` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `size` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `goodspackage` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `productcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `promitcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `price` double NULL DEFAULT NULL,
-  `number` int(11) NULL DEFAULT NULL,
-  `dangernum` int(11) NULL DEFAULT NULL,
-  `goodsimg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `available` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '商品ID',
+  `goodsname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品名称',
+  `providerid` int(11) NULL DEFAULT NULL COMMENT '供应商ID',
+  `produceplace` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品产地',
+  `size` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '规格',
+  `goodspackage` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '包装',
+  `productcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生产批号',
+  `promitcode` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '批准文号',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品描述',
+  `price` double NULL DEFAULT NULL COMMENT '销售价格',
+  `number` int(11) NULL DEFAULT NULL COMMENT '数量',
+  `dangernum` int(11) NULL DEFAULT NULL COMMENT '库存预警值',
+  `goodsimg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品图片',
+  `available` int(11) NULL DEFAULT NULL COMMENT '状态【0不可用1可用】',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_sq0btr2v2lq8gt8b4gb8tlk0i`(`providerid`) USING BTREE,
   CONSTRAINT `bus_goods_ibfk_1` FOREIGN KEY (`providerid`) REFERENCES `bus_provider` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '商品表' ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bus_goods
@@ -86,21 +86,21 @@ INSERT INTO `bus_goods` VALUES (18, '八宝粥', 2, '广州', '箱', '15', 'DFS2
 -- ----------------------------
 DROP TABLE IF EXISTS `bus_inport`;
 CREATE TABLE `bus_inport`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `paytype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `inporttime` datetime(0) NULL DEFAULT NULL,
-  `operateperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `number` int(11) NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `inportprice` double NULL DEFAULT NULL,
-  `providerid` int(11) NULL DEFAULT NULL,
-  `goodsid` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `paytype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付类型',
+  `inporttime` datetime(0) NULL DEFAULT NULL COMMENT '进货时间',
+  `operateperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作员',
+  `number` int(11) NULL DEFAULT NULL COMMENT '进货数量',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `inportprice` double NULL DEFAULT NULL COMMENT '进货价格',
+  `providerid` int(11) NULL DEFAULT NULL COMMENT '供应商ID',
+  `goodsid` int(11) NULL DEFAULT NULL COMMENT '商品ID',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `bus_inport_ibfk_1`(`providerid`) USING BTREE,
   INDEX `bus_inport_ibfk_2`(`goodsid`) USING BTREE,
   CONSTRAINT `bus_inport_ibfk_1` FOREIGN KEY (`providerid`) REFERENCES `bus_provider` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `bus_inport_ibfk_2` FOREIGN KEY (`goodsid`) REFERENCES `bus_goods` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '进货表' ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bus_inport
@@ -121,17 +121,17 @@ INSERT INTO `bus_inport` VALUES (12, '微信', '2018-12-25 16:48:24', '超级管
 -- ----------------------------
 DROP TABLE IF EXISTS `bus_outport`;
 CREATE TABLE `bus_outport`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `providerid` int(11) NULL DEFAULT NULL,
-  `paytype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `outputtime` datetime(0) NULL DEFAULT NULL,
-  `operateperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `outportprice` double(10, 2) NULL DEFAULT NULL,
-  `number` int(11) NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `goodsid` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `providerid` int(11) NULL DEFAULT NULL COMMENT '供应商ID',
+  `paytype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付类型',
+  `outputtime` datetime(0) NULL DEFAULT NULL COMMENT '退货时间',
+  `operateperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作员',
+  `outportprice` double(10, 2) NULL DEFAULT NULL COMMENT '退货价格',
+  `number` int(11) NULL DEFAULT NULL COMMENT '退货数量',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `goodsid` int(11) NULL DEFAULT NULL COMMENT '商品ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '退货表' ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bus_outport
@@ -144,19 +144,19 @@ INSERT INTO `bus_outport` VALUES (2, 3, '微信', '2019-08-16 08:26:54', '超级
 -- ----------------------------
 DROP TABLE IF EXISTS `bus_provider`;
 CREATE TABLE `bus_provider`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `providername` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `zip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `connectionperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `bank` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `available` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '供应商ID',
+  `providername` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '供应商名称',
+  `zip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮编',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '供应商地址',
+  `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '供应商电话',
+  `connectionperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系人',
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系人电话',
+  `bank` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '开户银行',
+  `account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '银行账号',
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `available` int(11) NULL DEFAULT NULL COMMENT '状态【0不可用1可用】',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '供应商表' ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bus_provider
@@ -173,17 +173,17 @@ INSERT INTO `bus_provider` VALUES (12, 'asdf', '123', 'sdf', '123', 'sda', '123'
 -- ----------------------------
 DROP TABLE IF EXISTS `bus_sales`;
 CREATE TABLE `bus_sales`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `customerid` int(11) NULL DEFAULT NULL,
-  `paytype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `salestime` datetime(0) NULL DEFAULT NULL,
-  `operateperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `number` int(11) NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `saleprice` decimal(10, 2) NULL DEFAULT NULL,
-  `goodsid` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `customerid` int(11) NULL DEFAULT NULL COMMENT '客户ID',
+  `paytype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付类型',
+  `salestime` datetime(0) NULL DEFAULT NULL COMMENT '销售时间',
+  `operateperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作员',
+  `number` int(11) NULL DEFAULT NULL COMMENT '销售数量',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `saleprice` decimal(10, 2) NULL DEFAULT NULL COMMENT '销售价格',
+  `goodsid` int(11) NULL DEFAULT NULL COMMENT '商品ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '销售表' ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bus_sales
@@ -196,17 +196,17 @@ INSERT INTO `bus_sales` VALUES (2, 8, '支付宝', '2020-01-21 03:05:13', '落�
 -- ----------------------------
 DROP TABLE IF EXISTS `bus_salesback`;
 CREATE TABLE `bus_salesback`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `customerid` int(11) NULL DEFAULT NULL,
-  `paytype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `salesbacktime` datetime(0) NULL DEFAULT NULL,
-  `salebackprice` double(10, 2) NULL DEFAULT NULL,
-  `operateperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `number` int(11) NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `goodsid` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `customerid` int(11) NULL DEFAULT NULL COMMENT '客户ID',
+  `paytype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付类型',
+  `salesbacktime` datetime(0) NULL DEFAULT NULL COMMENT '退货时间',
+  `salebackprice` double(10, 2) NULL DEFAULT NULL COMMENT '退货价格',
+  `operateperson` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作员',
+  `number` int(11) NULL DEFAULT NULL COMMENT '退货数量',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `goodsid` int(11) NULL DEFAULT NULL COMMENT '商品ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '销售退货表' ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bus_salesback
@@ -219,17 +219,17 @@ INSERT INTO `bus_salesback` VALUES (4, 4, '支付宝', '2020-03-07 07:45:12', 60
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dept`;
 CREATE TABLE `sys_dept`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pid` int(11) NULL DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `open` int(11) NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '部门ID',
+  `pid` int(11) NULL DEFAULT NULL COMMENT '父级部门ID',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '部门名称',
+  `open` int(11) NULL DEFAULT NULL COMMENT '是否展开',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '部门备注',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '部门地址',
   `available` int(11) NULL DEFAULT NULL COMMENT '状态【0不可用1可用】',
   `ordernum` int(11) NULL DEFAULT NULL COMMENT '排序码【为了调试显示顺序】',
-  `createtime` datetime(0) NULL DEFAULT NULL,
+  `createtime` datetime(0) NULL DEFAULT NULL COMMENT '部门创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '部门表' ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dept
@@ -251,12 +251,12 @@ INSERT INTO `sys_dept` VALUES (18, 4, '生产一部', 0, '生产食品', '武汉
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_loginfo`;
 CREATE TABLE `sys_loginfo`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `loginname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `loginip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `logintime` datetime(0) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `loginname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录用户名',
+  `loginip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录IP',
+  `logintime` datetime(0) NULL DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 289 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '登录日志' ENGINE = InnoDB AUTO_INCREMENT = 289 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_loginfo
@@ -542,13 +542,13 @@ INSERT INTO `sys_loginfo` VALUES (288, '落亦--luoyi', '0:0:0:0:0:0:0:1', '2020
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_notice`;
 CREATE TABLE `sys_notice`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `createtime` datetime(0) NULL DEFAULT NULL,
-  `opername` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公告标题',
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '公告内容',
+  `createtime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `opername` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作员',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '系统公告表' ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_notice
@@ -562,19 +562,19 @@ INSERT INTO `sys_notice` VALUES (56, 'sadf', 'asdf', '2020-03-08 04:17:44', '落
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_permission`;
 CREATE TABLE `sys_permission`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pid` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `pid` int(11) NULL DEFAULT NULL COMMENT '父级权限ID',
   `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限类型[menu/permission]',
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '管理系统名称',
   `percode` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限编码[只有type= permission才有  user:view]',
-  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `href` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `target` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `open` int(11) NULL DEFAULT NULL,
-  `ordernum` int(11) NULL DEFAULT NULL,
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '部门图标',
+  `href` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单地址',
+  `target` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '代理对象',
+  `open` int(11) NULL DEFAULT NULL COMMENT '是否展开',
+  `ordernum` int(11) NULL DEFAULT NULL COMMENT '排序码【为了调试显示顺序】',
   `available` int(11) NULL DEFAULT NULL COMMENT '状态【0不可用1可用】',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 126 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '功能权限表' ENGINE = InnoDB AUTO_INCREMENT = 126 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_permission
@@ -654,13 +654,13 @@ INSERT INTO `sys_permission` VALUES (124, 122, 'permission', '清空缓存', 'ca
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `available` int(11) NULL DEFAULT NULL,
-  `createtime` datetime(0) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `available` int(11) NULL DEFAULT NULL COMMENT '状态【0不可用1可用】',
+  `createtime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '用户权限等级表' ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role
@@ -676,14 +676,14 @@ INSERT INTO `sys_role` VALUES (10, '测试', '测试', 1, '2020-03-06 03:31:36')
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_permission`;
 CREATE TABLE `sys_role_permission`  (
-  `rid` int(11) NOT NULL,
-  `pid` int(11) NOT NULL,
+  `rid` int(11) NOT NULL COMMENT '权限等级ID',
+  `pid` int(11) NOT NULL COMMENT '功能权限ID',
   PRIMARY KEY (`pid`, `rid`) USING BTREE,
   INDEX `sys_role_permission_ibfk_1`(`pid`) USING BTREE,
   INDEX `sys_role_permission_ibfk_2`(`rid`) USING BTREE,
   CONSTRAINT `sys_role_permission_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `sys_permission` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `sys_role_permission_ibfk_2` FOREIGN KEY (`rid`) REFERENCES `sys_role` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '权限拥有功能' ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role_permission
@@ -808,15 +808,15 @@ INSERT INTO `sys_role_permission` VALUES (10, 122);
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `loginname` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `pwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `sex` int(11) NULL DEFAULT NULL,
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  `deptid` int(11) NULL DEFAULT NULL,
-  `hiredate` datetime(0) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '姓名',
+  `loginname` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '登录用户名',
+  `pwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '密码',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '地址',
+  `sex` int(11) NULL DEFAULT NULL COMMENT '性别【1为男2为女】',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '备注',
+  `deptid` int(11) NULL DEFAULT NULL COMMENT '部门ID',
+  `hiredate` datetime(0) NULL DEFAULT NULL COMMENT '入职时间',
   `mgr` int(11) NULL DEFAULT NULL COMMENT '上级领导id',
   `available` int(11) NULL DEFAULT 1 COMMENT '是否可用，0不可用，1可用',
   `ordernum` int(11) NULL DEFAULT NULL COMMENT '排序码',
@@ -827,7 +827,7 @@ CREATE TABLE `sys_user`  (
   UNIQUE INDEX `sys_user_loginname`(`loginname`) USING BTREE COMMENT '登陆名称唯一',
   INDEX `FK_sys_dept_sys_user`(`deptid`) USING BTREE,
   CONSTRAINT `FK_sys_dept_sys_user` FOREIGN KEY (`deptid`) REFERENCES `sys_dept` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '用户表' ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
@@ -845,6 +845,8 @@ INSERT INTO `sys_user` VALUES (12, '托尼', 'tuoni', '1403e113a2936d4509e9c13b8
 INSERT INTO `sys_user` VALUES (13, '贾维斯', 'jiaweisi', '98f28b861888f4274cb423345dce4bcc', '美国', 1, '人工智能', 3, '2019-12-03 00:00:00', 12, 1, 12, 1, '2020-02-24/8258FCECC0D64A1DB3B457E7D51D6AB5.jpg', '7258E2D93A3F429085B34BBD8E345CE7');
 INSERT INTO `sys_user` VALUES (14, '李九', 'lijiu', '9356d33c67f21e23b448d6198e414f77', '九江', 1, '测试', 4, '2020-03-05 16:00:00', 10, 1, 13, 1, '/images/defaultusertitle.jpg', 'D3FBF5E33F4D42FDACE85178FE84E95A');
 INSERT INTO `sys_user` VALUES (17, '张十', 'zhangshi', 'e99ddd2f81f17319e7a767573c674975', '南昌', 1, '测试', 4, '2020-03-06 03:30:12', 11, 1, 14, 1, '/images/defaultUserTitle.jpg', '5C6E7D2E2D8C4A8CB9DD4A9DF64DDB57');
+INSERT INTO `sys_user` VALUES (18, '张洋彬', 'zhangyb', '532ac00e86893901af5f0be6b704dbc7', '系统深处的男人', 1, '超级管理员', 1, '2018-06-25 11:06:34', NULL, 1, 1, 0, 'WIN_20220418_22_20_54_Pro.jpg', '04A93C74C8294AA09A8B974FD1F4ECBB');
+
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -852,12 +854,12 @@ INSERT INTO `sys_user` VALUES (17, '张十', 'zhangshi', 'e99ddd2f81f17319e7a767
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role`  (
   `uid` int(11) NOT NULL,
-  `rid` int(11) NOT NULL,
+  `rid` int(11) NOT NULL COMMENT '权限等级ID',
   PRIMARY KEY (`uid`, `rid`) USING BTREE,
   INDEX `FK_sys_user_role_1`(`rid`) USING BTREE,
   CONSTRAINT `FK_sys_user_role_1` FOREIGN KEY (`rid`) REFERENCES `sys_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_sys_user_role_2` FOREIGN KEY (`uid`) REFERENCES `sys_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+)COMMENT '用户权限分配表' ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user_role
