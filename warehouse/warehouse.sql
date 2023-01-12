@@ -871,3 +871,12 @@ INSERT INTO `sys_user_role` VALUES (3, 8);
 INSERT INTO `sys_user_role` VALUES (17, 10);
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+create or replace view bus_customer_1 as select * from bus_customer;
+create or replace view bus_goods_1 as select * from bus_goods;
+create or replace view bus_inport_1 as select * from bus_inport;
+create or replace view bus_outport_1 as select * from bus_outport;
+create or replace view bus_provider_1 as select * from bus_provider;
+create or replace view bus_sales_1 as select * from bus_sales;
+create or replace view bus_salesback_1 as select * from bus_salesback;
+
