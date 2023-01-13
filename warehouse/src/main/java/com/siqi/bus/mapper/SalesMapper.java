@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * InnoDB free: 9216 kB Mapper 接口
  * </p>
  *
- * @author luoyi-
- * @since 2019-12-21
+ * @Author: 索朗杰布，张洋彬
+ * @Date: 2023/1/3
  */
 public interface SalesMapper extends BaseMapper<Sales> {
 

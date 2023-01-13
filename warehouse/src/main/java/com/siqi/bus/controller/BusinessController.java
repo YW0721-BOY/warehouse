@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 业务管理的路由器
- * @Author: 落亦-
- * @Date: 2019/12/5 9:33
+ * @Author: 索朗杰布，张洋彬
+ * @Date: 2023/1/5
  */
 @Controller
 @RequestMapping("bus")

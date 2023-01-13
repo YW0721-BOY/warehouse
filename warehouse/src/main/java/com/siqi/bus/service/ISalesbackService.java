@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * InnoDB free: 9216 kB 服务类
  * </p>
  *
- * @author luoyi-
- * @since 2019-12-23
+ * @Author: 索朗杰布，张洋彬
+ * @Date: 2023/1/3
  */
 public interface ISalesbackService extends IService<Salesback> {
 

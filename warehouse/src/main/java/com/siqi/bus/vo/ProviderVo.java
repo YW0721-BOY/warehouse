@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * @Author: 落亦-
- * @Date: 2019/12/5 9:30
+ * @Author: 索朗杰布，张洋彬
+ * @Date: 2022/12/30
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

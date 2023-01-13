@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 /**
  * mp生成器
- * @Author: 落亦-
- * @Date: 2019/11/18 14:22
+ * @Author: 索朗杰布，张洋彬
+ * @Date: 2022/12/25
  */
 public class CodeGenerator {
 
