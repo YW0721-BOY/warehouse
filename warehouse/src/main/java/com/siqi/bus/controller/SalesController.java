@@ -27,8 +27,8 @@ import java.util.List;
  * InnoDB free: 9216 kB 前端控制器
  * </p>
  *
- * @author luoyi-
- * @since 2019-12-21
+ * @Author: 索朗杰布，张洋彬
+ * @Date: 2023/1/5
  */
 @RestController
 @RequestMapping("/sales")
